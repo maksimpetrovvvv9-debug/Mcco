@@ -1,124 +1,157 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCCO - Masshtab Creative Company</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        /* Общие стили */
-        body {
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #fffaf0; /* молочный */
-            color: #000;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        header {
-            background-color: #ff0000; /* красный */
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-        header p {
-            font-size: 1.2rem;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCCO - Masshtab Creative Company</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ========== Общие стили ========== */
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fffaf0; /* молочный */
+    color: #222;
+    scroll-behavior: smooth;
+}
+a { text-decoration: none; color: inherit; }
 
-        /* Секции */
-        section {
-            padding: 60px 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
-        section h2 {
-            color: #ff0000;
-            margin-bottom: 10px;
-        }
-        section p {
-            line-height: 1.6;
-        }
+/* ========== Шапка ========== */
+header {
+    background-color: #d70000; /* красный */
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+header p {
+    font-size: 1.3rem;
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.5;
+}
 
-        /* Кнопка подробнее */
-        .accordion-button {
-            background-color: #ff0000;
-            color: white;
-            cursor: pointer;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            margin-top: 15px;
-            font-size: 1rem;
-            transition: background 0.3s;
-        }
-        .accordion-button:hover {
-            background-color: #cc0000;
-        }
+/* ========== Секции ========== */
+section {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+section h2 {
+    font-size: 2rem;
+    color: #d70000;
+    margin-bottom: 20px;
+    position: relative;
+}
+section h2::after {
+    content: '';
+    width: 50px;
+    height: 3px;
+    background: #d70000;
+    display: block;
+    margin-top: 8px;
+    border-radius: 2px;
+}
+section p, section ul {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+ul { padding-left: 20px; }
 
-        /* Аккордеон контент */
-        .accordion-content {
-            display: none;
-            margin-top: 15px;
-            padding: 15px;
-            border-left: 4px solid #ff0000;
-            background-color: #fff;
-            border-radius: 5px;
-        }
+/* ========== Аккордеон ========== */
+.accordion-button {
+    background-color: #d70000;
+    color: white;
+    cursor: pointer;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+.accordion-button:hover {
+    background-color: #a50000;
+}
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background-color: #fff;
+    border-left: 4px solid #d70000;
+    padding: 0 20px;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+.accordion-content.show {
+    padding: 15px 20px;
+    max-height: 1500px; /* Достаточно для контента */
+}
 
-        /* Видео и изображения */
-        .media-placeholder {
-            width: 100%;
-            height: 300px;
-            background-color: #f0f0f0;
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #aaa;
-            font-size: 1.2rem;
-            border-radius: 5px;
-        }
+/* ========== Медиа плейсхолдеры ========== */
+.media-placeholder {
+    width: 100%;
+    height: 300px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
 
-        /* Подвал */
-        footer {
-            background-color: #ff0000;
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-        }
-        footer a {
-            color: white;
-            margin: 0 10px;
-        }
+/* ========== Прайс лист ========== */
+.price-list { margin: 10px 0 20px 0; }
+.price-list li { margin-bottom: 5px; }
 
-        /* Стили для списка прайсов */
-        .price-list {
-            margin: 10px 0;
-        }
-        .price-list li {
-            margin-bottom: 5px;
-        }
-    </style>
+/* ========== Подвал ========== */
+footer {
+    background-color: #d70000;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+footer a {
+    color: white;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+footer a:hover { text-decoration: underline; }
+
+/* ========== Плавные эффекты ========== */
+section, header, footer {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s forwards;
+}
+@keyframes fadeIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== Адаптив ========== */
+@media (max-width: 768px){
+    header h1 { font-size: 2.2rem; }
+    header p { font-size: 1.1rem; }
+    section h2 { font-size: 1.7rem; }
+}
+</style>
 </head>
 <body>
 
 <header>
     <h1>MCCO</h1>
-    <p>Masshtab Creative Company — превращаем идеи в цифровые продукты</p>
+    <p>Мы превращаем идеи в цифровые продукты. Эффективность, инновации и искусственный интеллект — для быстрого и качественного результата.</p>
 </header>
 
 <section id="about">
     <h2>О нас</h2>
     <p>
-        MCCO — это команда, которая превращает идеи в цифровые продукты.
-        Мы упрощаем сложные процессы, создаём эффективный контент и внедряем инновации.
-        Использование искусственного интеллекта позволяет нашим клиентам получать быстрый результат и экономить ресурсы.
+        MCCO — команда экспертов, создающая современные цифровые продукты. Мы упрощаем сложные процессы, создаём эффективный контент и внедряем инновации. Использование ИИ позволяет достигать результатов быстрее и экономить ресурсы.
     </p>
 </section>
 
@@ -134,194 +167,130 @@
     </ul>
 </section>
 
-<!-- Обучение ИИ -->
+<!-- Секция: Обучение ИИ -->
 <section>
     <h2>Обучение ИИ</h2>
-    <div class="media-placeholder">Видео / Изображение проекта</div>
+    <div class="media-placeholder">Место для видео / изображения</div>
     <button class="accordion-button">Подробнее</button>
     <div class="accordion-content">
-        <h3>О проекте</h3>
-        <p>Мы обучаем сотрудников компаний и всех желающих правильно использовать ИИ, чтобы ускорить работу и повысить продуктивность. Курсы и тренинги помогают освоить инструменты для автоматизации задач и внедрения новых технологий в рабочие процессы.</p>
-        <h3>Уникальность</h3>
+        <p>Мы обучаем сотрудников компаний и всех желающих использовать ИИ для ускорения работы и повышения продуктивности. Курсы помогают освоить инструменты автоматизации и внедрения технологий.</p>
         <ul>
-            <li>Практические знания, применимые сразу.</li>
-            <li>Индивидуальный подход под сферу клиента.</li>
-            <li>Рост эффективности сотрудников без дополнительных расходов на персонал.</li>
+            <li>Практические знания, применимые сразу</li>
+            <li>Индивидуальный подход</li>
+            <li>Рост эффективности без увеличения персонала</li>
         </ul>
-        <h3>Форматы</h3>
-        <ul>
-            <li>Онлайн-курсы.</li>
-            <li>Оффлайн мастер-классы.</li>
-            <li>Корпоративное обучение «под ключ».</li>
-        </ul>
-        <h3>Прайс-лист</h3>
+        <p><strong>Форматы:</strong> онлайн-курсы, оффлайн мастер-классы, корпоративное обучение «под ключ».</p>
         <ul class="price-list">
-            <li>$2 000 — корпоративное обучение (до 20 сотрудников).</li>
-            <li>$700 — индивидуальный интенсив (5 занятий).</li>
-            <li>$300 — базовый онлайн-курс.</li>
+            <li>$2 000 — корпоративное обучение (до 20 сотрудников)</li>
+            <li>$700 — индивидуальный интенсив (5 занятий)</li>
+            <li>$300 — базовый онлайн-курс</li>
         </ul>
     </div>
 </section>
 
-<!-- Love Story -->
+<!-- Секция: Love Story -->
 <section>
     <h2>Love Story (Анимированное видео)</h2>
-    <div class="media-placeholder">Видео / Изображение проекта</div>
+    <div class="media-placeholder">Место для видео / изображения</div>
     <button class="accordion-button">Подробнее</button>
     <div class="accordion-content">
-        <h3>О проекте</h3>
-        <p>Мы создаём персонализированные анимационные истории любви. Идеальный формат для подарка, свадьбы или особого события, который превращает эмоции в фильм.</p>
-        <h3>Уникальность</h3>
+        <p>Создаём персонализированные анимационные истории любви — идеальный подарок для свадьбы или особого события.</p>
         <ul>
-            <li>Полностью индивидуальный сценарий.</li>
-            <li>Возможность «оживить» личные фото и истории.</li>
-            <li>Эмоциональный и памятный подарок на всю жизнь.</li>
+            <li>Полностью индивидуальный сценарий</li>
+            <li>«Оживление» личных фото и историй</li>
+            <li>Эмоциональный и памятный подарок</li>
         </ul>
-        <h3>Форматы</h3>
-        <ul>
-            <li>Свадебный фильм.</li>
-            <li>История знакомства (Love Story) для показа на большом экране для гостей.</li>
-            <li>Индивидуальные романтические сюжеты.</li>
-        </ul>
-        <h3>Прайс-лист</h3>
+        <p><strong>Форматы:</strong> свадебный фильм, история знакомства для показа на экране, индивидуальные романтические сюжеты.</p>
         <ul class="price-list">
-            <li>$1000 — полный 10-минутный фильм.</li>
-            <li>$600 — Love Story ролик (3–5 минут).</li>
-            <li>$100 — мини-клип (до 1 минуты).</li>
+            <li>$1000 — полный 10-минутный фильм</li>
+            <li>$600 — Love Story ролик (3–5 минут)</li>
+            <li>$100 — мини-клип (до 1 минуты)</li>
         </ul>
     </div>
 </section>
 
-<!-- Блоггинг -->
+<!-- Секция: Блоггинг -->
 <section>
     <h2>Блоггинг</h2>
-    <div class="media-placeholder">Видео / Изображение проекта</div>
+    <div class="media-placeholder">Место для видео / изображения</div>
     <button class="accordion-button">Подробнее</button>
     <div class="accordion-content">
-        <h3>О проекте</h3>
-        <p>Мы создаём виртуального блогера на базе ИИ, который может вести влоги, юмористические ролики, обзоры и клипы. Это уникальный формат, который привлекает внимание аудитории и повышает вовлечённость.</p>
-        <h3>Уникальность</h3>
+        <p>Виртуальный блогер на базе ИИ создаёт влоги, юмористические ролики, обзоры и клипы, привлекая аудиторию и повышая вовлечённость.</p>
         <ul>
-            <li>Виртуальный блогер доступен 24/7.</li>
-            <li>Можно создавать бесконечный контент в разных жанрах.</li>
-            <li>Экономия на производстве и съёмках.</li>
+            <li>Доступен 24/7</li>
+            <li>Создание бесконечного контента в разных жанрах</li>
+            <li>Экономия на производстве и съёмках</li>
         </ul>
-        <h3>Форматы</h3>
-        <ul>
-            <li>Юмористические скетчи.</li>
-            <li>Влоги и обзоры.</li>
-            <li>Вирусные клипы для соцсетей.</li>
-        </ul>
-        <h3>Прайс-лист</h3>
+        <p><strong>Форматы:</strong> скетчи, влоги и обзоры, вирусные клипы для соцсетей.</p>
         <ul class="price-list">
-            <li>$8 000 — интеграция вашего логотипа в видео на протяжении месяца.</li>
-            <li>$1 000 — разовая реклама на пост.</li>
-            <li>$500 — разовая реклама для сторис.</li>
+            <li>$8 000 — интеграция логотипа на месяц</li>
+            <li>$1 000 — разовая реклама на пост</li>
+            <li>$500 — разовая реклама для сторис</li>
         </ul>
     </div>
 </section>
 
-<!-- Маркетинг -->
+<!-- Секция: Маркетинг -->
 <section>
     <h2>Маркетинг</h2>
-    <div class="media-placeholder">Видео / Изображение проекта</div>
+    <div class="media-placeholder">Место для видео / изображения</div>
     <button class="accordion-button">Подробнее</button>
     <div class="accordion-content">
-        <h3>О проекте</h3>
-        <p>Мы создаём креативные рекламные ролики с использованием ИИ, автоматизируем процессы и разрабатываем уникальный контент для брендов. Также предоставляем услуги по продвижению в социальных сетях.</p>
-        <h3>Форматы интеграции</h3>
+        <p>Создаём креативные рекламные ролики с помощью ИИ, автоматизируем процессы и продвигаем бренды в соцсетях.</p>
         <ul>
-            <li>Креативные рекламные ролики с помощью ИИ.</li>
-            <li>Автоматизация маркетинговых процессов.</li>
-            <li>Создание контента под задачи бренда.</li>
-            <li>Продвижение в соцсетях.</li>
-            <li>Внедрение инновационных решений (AR/VR и др.)</li>
+            <li>Креативные ролики на базе ИИ</li>
+            <li>Автоматизация маркетинговых процессов</li>
+            <li>Создание контента под задачи бренда</li>
+            <li>Продвижение в соцсетях</li>
+            <li>Внедрение AR/VR решений</li>
         </ul>
-        <h3>Прайс-лист</h3>
         <ul class="price-list">
-            <li>$7 000 — полный пакет.</li>
-            <li>$5 000 — один ролик + соцсети + базовое продвижение.</li>
-            <li>$3 500 — один ролик + базовая автоматизация.</li>
-            <li>$2 000 — короткий ролик до 30 секунд.</li>
+            <li>$7 000 — полный пакет</li>
+            <li>$5 000 — один ролик + адаптация</li>
+            <li>$3 500 — один ролик + базовая автоматизация</li>
+            <li>$2 000 — короткий ролик до 30 сек</li>
         </ul>
     </div>
 </section>
 
-<!-- Ведущий новостей -->
+<!-- Секция: Ведущий новостей -->
 <section>
     <h2>Ведущий новостей</h2>
-    <div class="media-placeholder">Видео / Изображение проекта</div>
+    <div class="media-placeholder">Место для видео / изображения</div>
     <button class="accordion-button">Подробнее</button>
     <div class="accordion-content">
-        <h3>О проекте</h3>
-        <p>Мы запускаем уникальный новостной канал с виртуальным ведущим на базе ИИ, рассказывающим актуальные события в Узбекистане.</p>
-        <h3>Уникальность</h3>
+        <p>Уникальный новостной канал с виртуальным ведущим на базе ИИ, рассказывающим актуальные события в Узбекистане.</p>
         <ul>
-            <li>Первый в Узбекистане виртуальный ведущий новостей.</li>
-            <li>Современная подача — сочетание достоверности и креатива.</li>
-            <li>Высокая скорость создания контента.</li>
+            <li>Первый виртуальный ведущий новостей в стране</li>
+            <li>Современная подача — достоверность + креатив</li>
+            <li>Быстрое создание контента</li>
         </ul>
-        <h3>Аудитория</h3>
-        <ul>
-            <li>Жители Узбекистана.</li>
-            <li>Молодёжь 18–35 лет.</li>
-            <li>Бизнес, ищущий новые способы продвижения.</li>
-        </ul>
-        <h3>Возможности интеграции рекламы</h3>
-        <ul>
-            <li>Рекламные вставки в стиле новостей.</li>
-            <li>Упоминание бренда в сюжете выпуска.</li>
-            <li>Логотип и баннер внизу экрана.</li>
-            <li>Продвижение соцсетей бренда.</li>
-        </ul>
-        <h3>Прайс-лист</h3>
         <ul class="price-list">
-            <li>$8 000 — интеграция логотипа в видео на месяц.</li>
-            <li>$1 000 — разовая реклама на пост.</li>
-            <li>$500 — разовая реклама для сторис.</li>
+            <li>$8 000 — интеграция логотипа на месяц</li>
+            <li>$1 000 — разовая реклама на пост</li>
+            <li>$500 — разовая реклама для сторис</li>
         </ul>
     </div>
 </section>
 
-<!-- Фильмы и сериалы -->
+<!-- Секция: Фильмы и сериалы -->
 <section>
     <h2>Первый в Узбекистане фильм созданный ИИ</h2>
-    <div class="media-placeholder">Видео / Изображение проекта</div>
+    <div class="media-placeholder">Место для видео / изображения</div>
     <button class="accordion-button">Подробнее</button>
     <div class="accordion-content">
-        <h3>О проекте</h3>
-        <p>Создаём исторический проект — первый в Узбекистане 40-минутный фильм, полностью созданный с помощью ИИ.</p>
-        <h3>Жанр</h3>
-        <p>Фантастика</p>
-        <h3>Уникальность</h3>
+        <p>Создаём исторический проект — 40-минутный фильм полностью на базе ИИ. Фантастика, инновации и медийный резонанс.</p>
         <ul>
-            <li>Первый фильм в стране, созданный ИИ.</li>
-            <li>Медийный резонанс и упоминания в СМИ.</li>
-            <li>Инновационный формат рекламы — бренд встроен в сюжет.</li>
-            <li>Потенциальный показ в кинотеатрах + онлайн-релизы.</li>
+            <li>Первый фильм в стране, созданный ИИ</li>
+            <li>Бренд интегрирован в сюжет</li>
+            <li>Потенциальный показ в кинотеатрах и онлайн</li>
         </ul>
-        <h3>Аудитория</h3>
-        <ul>
-            <li>Молодёжь 18–35 лет, активные пользователи соцсетей.</li>
-            <li>Киноманы и поклонники технологий.</li>
-            <li>Представители бизнеса, интересующиеся инновациями.</li>
-        </ul>
-        <h3>Прогнозируемый охват</h3>
-        <p>30 млн зрителей</p>
-        <h3>Форматы интеграции</h3>
-        <ul>
-            <li>Встроенная реклама в предметах и локациях фильма.</li>
-            <li>Интеграция бренда в реплики героев.</li>
-            <li>Продукт-плейсмент на фоне и деталях.</li>
-            <li>Упоминание бренда на премьере, в интервью и соцсетях.</li>
-        </ul>
-        <h3>Прайс-лист</h3>
         <ul class="price-list">
-            <li>$15 000 — логотип от начала до конца фильма + интеграция в сюжет.</li>
-            <li>$7 000 — логотип в начале фильма + реклама на ключевых фонах.</li>
-            <li>$5 000 — упоминание бренда на заднем фоне.</li>
-            <li>$3 000 — аудио реклама.</li>
-            <li>$1 000 — логотип в финальных титрах.</li>
+            <li>$15 000 — логотип от начала до конца фильма</li>
+            <li>$7 000 — логотип в начале + реклама на ключевых фонах</li>
+            <li>$5 000 — упоминание на заднем фоне</li>
+            <li>$3 000 — аудио реклама</li>
+            <li>$1 000 — логотип в финальных титрах</li>
         </ul>
     </div>
 </section>
@@ -340,14 +309,14 @@
 </footer>
 
 <script>
-    // Аккордеон
-    const buttons = document.querySelectorAll('.accordion-button');
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            const content = button.nextElementSibling;
-            content.style.display = content.style.display === 'block' ? 'none' : 'block';
-        });
+// Аккордеон
+const buttons = document.querySelectorAll('.accordion-button');
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        content.classList.toggle('show');
     });
+});
 </script>
 
 </body>
