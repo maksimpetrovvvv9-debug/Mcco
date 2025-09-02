@@ -1,109 +1,369 @@
+Фирдавс, [02.09.2025 17:16]
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MCCO - Masshtab Creative Company</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MCCO — Masshtab Creative Company</title>
+  <meta name="description" content="MCCO (Masshtab Creative Company) — ИИ‑продакшн: фильмы, маркетинг, обучение, блоггинг, ИИ‑ведущий новостей и персонализированные Love Story." />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              red: '#dc2626',
+              milk: '#fff8f2'
+            }
+          },
+          boxShadow: {
+            soft: '0 10px 25px -15px rgba(0,0,0,0.25)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Доп. стили для плавного аккордеона */
+    .flow-hide { display: none; }
+    .accordion-panel { max-height: 0; overflow: hidden; transition: max-height 0.45s cubic-bezier(.2,.8,.2,1), padding 0.25s; }
+    .accordion-panel.open { padding-top: 1rem; padding-bottom: 1rem; }
+    /* Для плавного вычисления высоты */
+    .accordion-panel-inner { padding: 0 0.5rem; }
+    /* Стили иконки плюс/минус */
+    .icon-transform { transition: transform .25s ease; }
+    .icon-rotate { transform: rotate(45deg); }
+    /* Ограничение высоты прайса на мобилках */
+    @media (max-width: 640px) {
+      .price-list { font-size: 0.95rem; }
+    }
+  </style>
 </head>
-<body class="bg-white text-gray-900 font-sans">
-  <!-- Hero Section -->
-  <section class="bg-red-600 text-white py-20 px-6 text-center">
-    <h1 class="text-4xl md:text-6xl font-bold">MCCO</h1>
-    <p class="mt-4 text-xl">Vasshtab Creative Company</p>
-    <p class="mt-2 text-lg">Экономьте время и деньги с нами!</p>
-    <a href="#directions" class="mt-6 inline-block bg-white text-red-600 px-6 py-3 rounded-2xl font-semibold shadow-lg hover:bg-red-100">Наши направления</a>
-  </section>
-
-  <!-- About Us -->
-  <section class="max-w-5xl mx-auto py-16 px-6">
-    <h2 class="text-3xl font-bold mb-6 text-center">О нас</h2>
-    <p class="text-lg text-center leading-relaxed">
-      Мы с помощью ИИ экономим время и деньги как и для сотрудников так и для предпринимателей.
-      Мы обучаем людей правильно пользоваться ИИ и применять их в работе для продуктивности.
-      Мы создаем фильмы, сериалы, анимации, рекламные ролики, обучаем и масштабируемся.
-    </p>
-  </section>
-
-  <!-- Directions -->
-  <section id="directions" class="bg-gray-50 py-16 px-6">
-    <h2 class="text-3xl font-bold text-center mb-10">Наши направления</h2>
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-      <!-- Card -->
-      <div class="bg-white rounded-2xl shadow p-6 flex flex-col justify-between">
-        <h3 class="text-xl font-semibold mb-3">Фильмы, Сериалы, Мультики</h3>
-        <p class="flex-1">Создание контента с помощью ИИ для ускорения производства.</p>
-        <img src="assets/film.jpg.jpg" alt="Фильмы, Сериалы, Мультики" 
-     class="mt-4 w-full rounded-xl max-h-60 object-cover" loading="lazy">
-
-        <a href="assets/komercheskoe-predlozhenie.pdf" 
-   class="bg-red-600 text-white px-4 py-2 rounded-xl" 
-   download>
-   Скачать КП
-</a>
-
+<body class="bg-brand-milk text-gray-900 antialiased">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/60 backdrop-blur-md border-b border-red-100">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-3">
+        <img src="assets/images/logotip.png" alt="Masshtab Creative Company" class="h-10 w-auto object-contain" />
+        <div class="hidden sm:block">
+          <div class="text-xs text-gray-500">Masshtab Creative Company</div>
+          <div class="font-bold">MCCO</div>
+        </div>
+      </a>
+      <nav class="hidden md:flex gap-6 text-sm items-center">
+        <a href="#about" class="hover:text-brand-red">О компании</a>
+        <a href="#services" class="hover:text-brand-red">Направления</a>
+        <a href="#projects" class="hover:text-brand-red">Проекты</a>
+        <a href="#contacts" class="hover:text-brand-red">Контакты</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="#contacts" class="hidden sm:inline-flex items-center bg-brand-red text-white px-4 py-2 rounded-2xl shadow-soft hover:shadow-lg">Связаться</a>
+        <button id="menuBtn" class="md:hidden px-2 py-1 rounded-md border">☰</button>
       </div>
-      
-      <div class="bg-white rounded-2xl shadow p-6 flex flex-col justify-between">
-        <h3 class="text-xl font-semibold mb-3">Маркетинг</h3>
-        <p class="flex-1">Креативные рекламные ролики и автоматизация процессов.</p>
-        <img src="assets/marketing.jpg.jpg" alt="Маркетинг" 
-     class="mt-4 w-full rounded-xl max-h-60 object-cover" loading="lazy">
+    </div>
+  </header>
 
-        <a href="#" class="mt-4 inline-block bg-red-600 text-white px-4 py-2 rounded-xl hover:bg-red-700">Скачать КП</a>
+  <!-- Hero -->
+  <section id="top" class="py-16">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight">Masshtab Creative Company — ИИ для креатива и бизнеса</h1>
+        <p class="mt-4 text-lg text-gray-700">Мы экономим время и деньги с помощью искусственного интеллекта: создаём контент, автоматизируем процессы и обучаем команды. Фильмы, маркетинг, обучение, блоггинг, новостной ведущий и персонализированные Love Story — всё в одном месте.</p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#services" class="bg-brand-red text-white px-5 py-3 rounded-2xl shadow-soft hover:scale-[1.01] transition">Наши направления</a>
+          <a href="#projects" class="px-5 py-3 rounded-2xl border border-gray-200 hover:border-brand-red hover:text-brand-red transition">Проекты</a>
+        </div>
       </div>
-
-      <div class="bg-white rounded-2xl shadow p-6 flex flex-col justify-between">
-        <h3 class="text-xl font-semibold mb-3">Обучение ИИ</h3>
-        <p class="flex-1">Развитие навыков и повышение производительности через обучение ИИ.</p>
-        <img src="assets/education.jpg.jpg" alt="Обучение ИИ" 
-     class="mt-4 w-full rounded-xl max-h-60 object-cover" loading="lazy">
-
-        <a href="#" class="mt-4 inline-block bg-red-600 text-white px-4 py-2 rounded-xl hover:bg-red-700">Скачать КП</a>
-      </div>
-
-      <div class="bg-white rounded-2xl shadow p-6 flex flex-col justify-between">
-        <h3 class="text-xl font-semibold mb-3">Блогинг</h3>
-        <p class="flex-1">Уникальный контент и привлечение аудитории с виртуальными блогерами.</p>
-        <img src="assets/blogging.jpg.jpg" alt="Блогинг" 
-     class="mt-4 w-full rounded-xl max-h-60 object-cover" loading="lazy">
-
-        <a href="#" class="mt-4 inline-block bg-red-600 text-white px-4 py-2 rounded-xl hover:bg-red-700">Скачать КП</a>
-      </div>
-
-      <div class="bg-white rounded-2xl shadow p-6 flex flex-col justify-between">
-        <h3 class="text-xl font-semibold mb-3">ИИ Ведущий Новостей</h3>
-        <p class="flex-1">Цифровизация медиа и инновационный подход к новостям.</p>
-        <img src="assets/news.jpg.jpg" alt="ИИ Ведущий Новостей" 
-     class="mt-4 w-full rounded-xl max-h-60 object-cover" loading="lazy">
-
-        <a href="#" class="mt-4 inline-block bg-red-600 text-white px-4 py-2 rounded-xl hover:bg-red-700">Скачать КП</a>
+      <div class="relative">
+        <div class="aspect-video rounded-3xl overflow-hidden shadow-soft ring-1 ring-red-100">
+          <img src="assets/hero.jpg" alt="MCCO — AI production" class="h-full w-full object-cover" />
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Projects -->
-  <section class="max-w-5xl mx-auto py-16 px-6 text-center">
-    <h2 class="text-3xl font-bold mb-6">Наши проекты</h2>
-    <p class="mb-4">Скоро здесь будут примеры наших видео!</p>
-    <div class="space-y-3">
-      <a href="https://www.instagram.com/garmdori.tv" target="_blank" class="text-red-600 underline">Instagram проекта Garmdori TV</a><br>
-      <a href="https://www.instagram.com/mcco_uz" target="_blank" class="text-red-600 underline">Instagram компании MCCO</a>
+  <!-- About -->
+  <section id="about" class="py-10">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-2xl font-bold">О компании</h2>
+
+Фирдавс, [02.09.2025 17:16]
+<p class="mt-4 text-gray-700">MCCO (Masshtab Creative Company) — креативная студия, которая с помощью ИИ помогает сотрудникам и предпринимателям работать быстрее и дешевле. Мы обучаем, создаём медиа-контент и запускаем инновационные проекты, сочетая технологии и творческий подход.</p>
     </div>
   </section>
 
-  <!-- Contacts -->
-  <section class="bg-gray-100 py-16 px-6">
-    <h2 class="text-3xl font-bold text-center mb-6">Контакты</h2>
-    <div class="text-center text-lg">
-      <p>Телефон: <a href="tel:+998990113020" class="text-red-600">+998 99 011 30 20</a></p>
-      <p>Email: <a href="mailto:firdavstillaev5@gmail.com" class="text-red-600">firdavstillaev5@gmail.com</a></p>
-    </div>
-  </section>
+  <!-- Services / Аккордеон -->
+  <section id="services" class="py-12 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-bold">Наши направления</h2>
+        <p class="text-sm text-gray-500">Нажмите «Подробнее», чтобы раскрыть информацию — сначала описание и преимущества, затем цены.</p>
+      </div>
 
-  <!-- Footer -->
-  <footer class="bg-red-600 text-white py-6 text-center">
-    <p>© 2025 MCCO. Все права защищены.</p>
-  </footer>
-</body>
-</html>
+      <div class="mt-8 space-y-6">
+        <!-- service item template start -->
+
+        <!-- 1. Фильмы и сериалы -->
+        <div class="bg-brand-milk rounded-2xl p-6 ring-1 ring-red-100 shadow-soft">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h3 class="text-xl font-semibold">Фильмы и сериалы</h3>
+              <p class="mt-2 text-gray-600">Создаём крупные кинопроекты и анимацию с применением ИИ; медийные премьеры и интеграции брендов.</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button class="service-open-btn bg-white border border-gray-200 px-4 py-2 rounded-xl" data-target="svc-1">Подробнее</button>
+            </div>
+          </div>
+
+          <div id="svc-1" class="accordion-panel mt-4 flow-hide">
+            <div class="accordion-panel-inner bg-white rounded-lg p-4">
+              <h4 class="font-semibold">О проекте</h4>
+              <p class="mt-2 text-gray-700">Мы создаём исторический проект — первый в Узбекистане 40‑минутный фильм, полностью созданный с помощью технологий искусственного интеллекта. Жанр: Фантастика. Фильм уже вызвал интерес у «O’zbekfilm», премьера запланирована в ноябре; до 15 сентября — набор спонсоров.</p>
+
+              <h4 class="mt-4 font-semibold">Уникальность</h4>
+              <ul class="list-disc pl-5 mt-2 text-gray-700">
+                <li>Первый в стране фильм, созданный ИИ — ваша компания станет частью истории.</li>
+                <li>Медийный резонанс — упоминания в СМИ, соцсетях и блогах.</li>
+                <li>Инновационный формат интеграции бренда прямо в сюжет.</li>
+                <li>Потенциальные показы в кинотеатрах и онлайн‑релизы.</li>
+              </ul>
+
+              <h4 class="mt-4 font-semibold">Аудитория</h4>
+              <p class="mt-2 text-gray-700">Молодёжь 18–35 лет, киноманы и поклонники новых технологий. Общий прогнозируемый охват: до 30 млн зрителей.</p>
+
+              <h4 class="mt-4 font-semibold">Форматы интеграции</h4>
+              <ul class="list-disc pl-5 mt-2 text-gray-700">
+                <li>Логотип в титрах и в ключевых сценах.</li>
+                <li>Встроенная реклама в предметах и локациях фильма.</li>
+                <li>Интеграция бренда в реплики героев и детали сюжета.</li>
+                <li>Упоминание бренда на премьере и в сопровождающих материалах.</li>
+              </ul>
+
+              <h4 class="mt-4 font-semibold">Бонусы для партнёров</h4>
+              <ul class="list-disc pl-5 mt-2 text-gray-700">
+                <li>Присутствие на закрытой премьере.</li>
+                <li>Фото‑ и видеоматериалы с упоминанием бренда.</li>
+                <li>Публикации в официальных соцсетях проекта.</li>
+                <li>Участие в пресс‑ивентах.</li>
+              </ul>
+
+              <h4 class="mt-4 font-semibold">Прайс‑лист</h4>
+              <ul class="list-inside list-disc mt-2 price-list text-gray-800">
+                <li><strong>$15,000</strong> — Логотип от начала до конца фильма, интеграция в сюжет как главный предмет/здание, упоминание во всех пресс‑релизах и афишах.</li>
+                <li><strong>$7,000</strong> — Логотип в начале фильма, реклама на ключевых фонах (5–7 сек), упоминание на афишах и баннерах премьеры.</li>
+                <li><strong>$5,000</strong> — Упоминание бренда на заднем фоне (3–4 сек) + упоминание в титрах.
+
+Фирдавс, [02.09.2025 17:16]
+</li>
+                <li><strong>$1,000</strong> — Логотип в финальных титрах, упоминание в соцсетях фильма.</li>
+                <li><strong>$3,000</strong> — Аудио интеграция (звук вашей рекламы в колонках/радио внутри сцен).</li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Маркетинг -->
+        <div class="bg-brand-milk rounded-2xl p-6 ring-1 ring-red-100 shadow-soft">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h3 class="text-xl font-semibold">Маркетинг</h3>
+              <p class="mt-2 text-gray-600">Креативные рекламные ролики, автоматизация маркетинга и продвижение в социальных сетях — мы покрываем весь цикл от идеи до запуска.</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button class="service-open-btn bg-white border border-gray-200 px-4 py-2 rounded-xl" data-target="svc-2">Подробнее</button>
+            </div>
+          </div>
+
+          <div id="svc-2" class="accordion-panel mt-4 flow-hide">
+            <div class="accordion-panel-inner bg-white rounded-lg p-4">
+              <h4 class="font-semibold">О проекте</h4>
+              <p class="mt-2 text-gray-700">Мы создаём креативные рекламные ролики с использованием ИИ, автоматизируем процессы и разрабатываем уникальный контент для брендов. Дополнительно — продвижение в социальных сетях для максимального охвата.</p>
+
+              <h4 class="mt-4 font-semibold">Уникальность</h4>
+              <ul class="list-disc pl-5 mt-2 text-gray-700">
+                <li>Генерация креатива и сценариев с ИИ.</li>
+                <li>Адаптация контента под платформы с учётом формата и аудитории.</li>
+                <li>Скорость производства и экономия бюджета.</li>
+              </ul>
+
+              <h4 class="mt-4 font-semibold">Форматы интеграции</h4>
+              <ul class="list-disc pl-5 mt-2 text-gray-700">
+                <li>Креативные ролики (длинные и короткие).</li>
+                <li>Автоматизация маркетинга и шаблоны контента.</li>
+                <li>Продвижение в социальных сетях.</li>
+                <li>Дополнительные инновационные опции (по запросу).</li>
+              </ul>
+
+              <h4 class="mt-4 font-semibold">Прайс‑лист</h4>
+              <ul class="list-inside list-disc mt-2 price-list text-gray-800">
+                <li><strong>$7,000</strong> — Полный пакет: концепция, основной ролик, серия коротких версий, продвижение и дополнительные активности.</li>
+                <li><strong>$5,000</strong> — Один ролик + адаптация под соцсети + базовое продвижение.</li>
+                <li><strong>$3,500</strong> — Один ролик + базовая автоматизация (шаблоны контента).</li>
+                <li><strong>$2,000</strong> — Короткий ролик до 30 секунд (формат Reels/Shorts/TikTok).</li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Обучение -->
+        <div class="bg-brand-milk rounded-2xl p-6 ring-1 ring-red-100 shadow-soft">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h3 class="text-xl font-semibold">Обучение ИИ</h3>
+              <p class="mt-2 text-gray-600">Курсы и тренинги для сотрудников и всех желающих — практика, автоматизация задач и внедрение ИИ в работу.</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button class="service-open-btn bg-white border border-gray-200 px-4 py-2 rounded-xl" data-target="svc-3">Подробнее</button>
+            </div>
+          </div>
+
+          <div id="svc-3" class="accordion-panel mt-4 flow-hide">
+            <div class="accordion-panel-inner bg-white rounded-lg p-4">
+              <h4 class="font-semibold">О проекте</h4>
+              <p class="mt-2 text-gray-700">Мы обучаем сотрудников компаний и всех желающих правильно использовать ИИ, чтобы ускорить работу и повысить продуктивность. Курсы и тренинги помогают освоить инструменты для автоматизации задач и внедрения новых технологий в рабочие процессы.</p>
+
+Фирдавс, [02.09.2025 17:16]
+<h4 class="mt-4 font-semibold">Уникальность</h4>
+              <ul class="list-disc pl-5 mt-2 text-gray-700">
+                <li>Практические знания, применимые сразу.</li>
+                <li>Индивидуальный подход под сферу клиента.</li>
+                <li>Рост эффективности без больших затрат на персонал.</li>
+              </ul>
+
+              <h4 class="mt-4 font-semibold">Форматы</h4>
+              <ul class="list-disc pl-5 mt-2 text-gray-700">
+                <li>Онлайн‑курсы.</li>
+                <li>Оффлайн мастер‑классы.</li>
+                <li>Корпоративное обучение «под ключ».</li>
+              </ul>
+
+              <h4 class="mt-4 font-semibold">Прайс‑лист</h4>
+              <ul class="list-inside list-disc mt-2 price-list text-gray-800">
+                <li><strong>$2,000</strong> — Корпоративное обучение (до 20 сотрудников).</li>
+                <li><strong>$700</strong> — Индивидуальный интенсив (5 занятий).</li>
+                <li><strong>$300</strong> — Базовый онлайн‑курс.</li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Блоггинг -->
+        <div class="bg-brand-milk rounded-2xl p-6 ring-1 ring-red-100 shadow-soft">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h3 class="text-xl font-semibold">Блоггинг</h3>
+              <p class="mt-2 text-gray-600">Виртуальный блогер на базе ИИ — влоги, скетчи и вирусные клипы для привлечения аудитории.</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button class="service-open-btn bg-white border border-gray-200 px-4 py-2 rounded-xl" data-target="svc-4">Подробнее</button>
+            </div>
+          </div>
+
+          <div id="svc-4" class="accordion-panel mt-4 flow-hide">
+            <div class="accordion-panel-inner bg-white rounded-lg p-4">
+              <h4 class="font-semibold">О проекте</h4>
+              <p class="mt-2 text-gray-700">Мы создаём виртуального блогера на базе ИИ, который может вести влоги, юмористические ролики, обзоры и клипы. Это формат с высоким вовлечением и вирусным потенциалом.</p>
+
+              <h4 class="mt-4 font-semibold">Уникальность</h4>
+              <ul class="list-disc pl-5 mt-2 text-gray-700">
+                <li>Виртуальный блогер доступен 24/7.</li>
+                <li>Бесконечный поток контента в разных жанрах.</li>
+                <li>Снижение затрат на производство и съёмки.</li>
+              </ul>
+
+              <h4 class="mt-4 font-semibold">Форматы</h4>
+              <ul class="list-disc pl-5 mt-2 text-gray-700">
+                <li>Юмористические скетчи.</li>
+                <li>Влоги и обзоры.</li>
+                <li>Вирусные клипы для соцсетей.</li>
+              </ul>
+
+              <h4 class="mt-4 font-semibold">Прайс‑лист</h4>
+              <ul class="list-inside list-disc mt-2 price-list text-gray-800">
+                <li><strong>$8,000</strong> — Интеграция логотипа и бренда в видео на протяжении месяца.</li>
+                <li><strong>$1,000</strong> — Разовая реклама в посте.</li>
+                <li><strong>$500</strong> — Разовая реклама в сторис / коротком видео.</li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Ведущий новостей -->
+        <div class="bg-brand-milk rounded-2xl p-6 ring-1 ring-red-100 shadow-soft">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h3 class="text-xl font-semibold">Ведущий новостей (ИИ‑канал)</h3>
+              <p class="mt-2 text-gray-600">Уникальный новостной канал с виртуальным ведущим: современная подача и оперативные выпуски с возможностью рекламных интеграций.</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button class="service-open-btn bg-white border border-gray-200 px-4 py-2 rounded-xl" data-target="svc-5">Подробнее</button>
+            </div>
+          </div>
+
+          <div id="svc-5" class="accordion-panel mt-4 flow-hide">
+
+Фирдавс, [02.09.2025 17:16]
+<div class="accordion-panel-inner bg-white rounded-lg p-4">
+              <h4 class="font-semibold">О проекте</h4>
+              <p class="mt-2 text-gray-700">Мы запускаем новостной канал, где ведущий, созданный на базе ИИ, ежедневно рассказывает об актуальных событиях в Узбекистане. Формат сочетает достоверность и современную подачу.</p>
+
+              <h4 class="mt-4 font-semibold">Уникальность</h4>
+              <ul class="list-disc pl-5 mt-2 text-gray-700">
+                <li>Первый в Узбекистане виртуальный ведущий новостей.</li>
+                <li>Быстрая генерация выпусков и масштабируемость контента.</li>
+                <li>Высокая вовлекаемость аудитории за счёт формата.</li>
+              </ul>
+
+              <h4 class="mt-4 font-semibold">Возможности интеграции рекламы</h4>
+              <ul class="list-disc pl-5 mt-2 text-gray-700">
+                <li>Рекламные вставки в стиле новостей.</li>
+                <li>Упоминание бренда в сюжете выпуска.</li>
+                <li>Логотип и баннер внизу экрана.</li>
+                <li>Продвижение соцсетей бренда.</li>
+              </ul>
+
+              <h4 class="mt-4 font-semibold">Прайс‑лист</h4>
+              <ul class="list-inside list-disc mt-2 price-list text-gray-800">
+                <li><strong>$8,000</strong> — Интеграция логотипа/бренда в видео на протяжении месяца (серия выпусков).</li>
+                <li><strong>$1,000</strong> — Разовая реклама/упоминание в одном выпуске.</li>
+                <li><strong>$500</strong> — Короткая рекламная вставка / сторис‑формат.</li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Love Story -->
+        <div class="bg-brand-milk rounded-2xl p-6 ring-1 ring-red-100 shadow-soft">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h3 class="text-xl font-semibold">Love Story — анимированное видео</h3>
+              <p class="mt-2 text-gray-600">Персонализированные анимированные истории любви — трогательный и запоминающийся подарок или формат для мероприятий.</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button class="service-open-btn bg-white border border-gray-200 px-4 py-2 rounded-xl" data-target="svc-6">Подробнее</button>
+            </div>
+          </div>
+
+          <div id="svc-6" class="accordion-panel mt-4 flow-hide">
+            <div class="accordion-panel-inner bg-white rounded-lg p-4">
+              <h4 class="font-semibold">О проекте</h4>
+              <p class="mt-2 text-gray-700">Мы создаём персонализированные анимационные истории любви. Идеальный формат для подарка, свадьбы или важного события: эмоции в ролике, который запомнится навсегда.</p>
+
+              <h4 class="mt-4 font-semibold">Уникальность</h4>
+              <ul class="list-disc pl-5 mt-2 text-gray-700">
+                <li>Индивидуальный сценарий под заказ.</li>
+                <li>Возможность «оживить» личные фото и воспоминания.</li>
+                <li>Долговечный эмоциональный формат.</li>
+              </ul>
+
+              <h4 class="mt-4 font-semibold">Форматы</h4>
+              <ul class="list-disc pl-5 mt-2 text-gray-700">
+                <li>Свадебный фильм (полноценный показ).</li>
+                <li>История знакомства для показа на мероприятии.</li>
