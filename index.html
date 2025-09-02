@@ -1,195 +1,264 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MCCO — Masshtab Creative Company</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-  body { scroll-behavior: smooth; }
-  .accordion-panel { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, padding 0.25s; }
-  .accordion-panel.open { padding-top:1rem; padding-bottom:1rem; }
-  .accordion-panel-inner { padding:0 0.5rem; }
-  @media (max-width:640px){.price-list{font-size:0.95rem;}}
+.accordion-panel { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, padding 0.3s ease; }
+.accordion-panel.open { padding-top: 1rem; padding-bottom: 1rem; }
+.accordion-panel-inner { padding: 0 0.5rem; }
+.toggle-btn::after { content: "+"; display: inline-block; margin-left: 0.5rem; transition: transform 0.3s; }
+.toggle-btn.open::after { content: "–"; }
+@media (max-width: 640px) { .price-list { font-size: 0.95rem; } }
 </style>
 </head>
-<body class="bg-brand-milk text-gray-900 antialiased">
-
-<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-red-100">
-  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-    <a href="#top" class="flex items-center gap-3"><div class="font-bold">MCCO</div></a>
-    <nav id="navMenu" class="hidden md:flex gap-6 text-sm items-center">
-      <a href="#about" class="hover:text-red-600">О компании</a>
-      <a href="#services" class="hover:text-red-600">Направления</a>
-    </nav>
-    <button id="menuBtn" class="md:hidden px-2 py-1 rounded-md border">☰</button>
-  </div>
-</header>
-
-<section id="top" class="py-16 text-center">
-  <h1 class="text-4xl font-extrabold">Masshtab Creative Company — ИИ для креатива и бизнеса</h1>
-  <p class="mt-4 text-lg text-gray-700">Фильмы, маркетинг, обучение, блоггинг, ИИ-ведущий новостей и персонализированные Love Story.</p>
-</section>
-
-<section id="about" class="py-10 max-w-4xl mx-auto px-4 text-center">
-  <h2 class="text-2xl font-bold">О компании</h2>
-  <p class="mt-4 text-gray-700">MCCO — креативная студия, которая с помощью ИИ помогает сотрудникам и предпринимателям работать быстрее и дешевле. Создаём медиа-контент и запускаем инновационные проекты.</p>
-</section>
+<body class="bg-brand-milk text-gray-900 antialiased p-4">
 
 <section id="services" class="py-12 max-w-6xl mx-auto px-4">
-  <h2 class="text-2xl font-bold mb-4">Наши направления</h2>
-  <div class="space-y-6">
+<h2 class="text-2xl font-bold mb-4">Наши направления</h2>
+<div id="services-container" class="space-y-6"></div>
+</section>
 
-<!-- Функция для каждого направления -->
 <script>
 const services = [
   {
     title: "Первый фильм созданный ИИ",
     target: "svc-1",
-    content: `
+    content: `<div class="accordion-panel-inner">
 <h4 class="font-semibold">О проекте</h4>
-<p>Мы создаём исторический проект — первый в Узбекистане 40-минутный фильм, полностью созданный с помощью ИИ. Жанр: Фантастика. Премьера обещает стать событием года.</p>
+<p>Мы создаём исторический проект — первый в Узбекистане 40-минутный фильм, полностью созданный с помощью технологий ИИ.</p>
 <h4 class="font-semibold mt-2">Уникальность</h4>
-<ul class="list-disc pl-5"><li>Первый в стране фильм, созданный ИИ.</li><li>Медийный резонанс.</li><li>Инновационный формат интеграции бренда.</li><li>Потенциальный показ в кинотеатрах + онлайн.</li></ul>
+<ul class="list-disc pl-5">
+<li>Первый в стране фильм, созданный ИИ — ваша компания станет частью истории</li>
+<li>Медийный резонанс — упоминания в СМИ, соцсетях, блогах</li>
+<li>Инновационный формат рекламы — бренд встроен в сюжет</li>
+<li>Потенциальный показ в кинотеатрах + онлайн-релизы</li>
+</ul>
 <h4 class="font-semibold mt-2">Аудитория</h4>
-<p>Молодёжь 18–35 лет, киноманы, бизнес.</p>
+<p>Молодёжь 18–35 лет, киноманы, бизнес, интересующийся инновациями</p>
 <h4 class="font-semibold mt-2">Форматы интеграции</h4>
-<ul class="list-disc pl-5"><li>Встроенная реклама в предметах и локациях фильма</li><li>Интеграция бренда в реплики героев</li><li>Продукт-плейсмент на фоне и в деталях</li><li>Упоминание бренда на премьере и в соцсетях</li></ul>
+<ul class="list-disc pl-5">
+<li>Встроенная реклама в предметах и локациях фильма</li>
+<li>Интеграция бренда в реплики героев</li>
+<li>Продукт-плейсмент на фоне и деталях</li>
+<li>Упоминание бренда на премьере, интервью, в соцсетях</li>
+</ul>
 <h4 class="font-semibold mt-2">Прайс-лист</h4>
-<ul class="list-disc pl-5 price-list"><li>$15 000 — Логотип от начала до конца фильма</li><li>$7 000 — Логотип в начале фильма + реклама</li><li>$5 000 — Упоминание на заднем фоне + титры</li><li>$3 000 — Аудио реклама</li><li>$1 000 — Логотип в финальных титрах</li></ul>
-<div class="mt-4"><label class="block font-semibold mb-1">Загрузить видео-пример (до 100 МБ)</label><input type="file" accept="video/*" class="upload-video" data-target="video-svc-1"><video id="video-svc-1" controls class="w-full mt-2 max-h-64"></video></div>
-`
+<ul class="list-disc pl-5 price-list">
+<li>$15 000 — Логотип от начала до конца фильма, интеграция в сюжет как главный предмет/здание, упоминание во всех пресс-релизах, афишах</li>
+<li>$7 000 — Логотип в начале фильма, реклама на ключевых фонах (5–7 сек), упоминание на афишах и баннерах премьеры</li>
+<li>$5 000 — Упоминание бренда на заднем фоне (3–4 сек) + в титрах фильма</li>
+<li>$3 000 — Аудио реклама</li>
+<li>$1 000 — Логотип в финальных титрах, упоминание в соцсетях фильма</li>
+</ul>
+<div class="mt-4">
+<label class="block font-semibold mb-1">Загрузить видео (до 100 МБ)</label>
+<input type="file" accept="video/*" class="upload-video" data-target="video-svc-1">
+<video id="video-svc-1" controls class="w-full mt-2 max-h-64"></video>
+</div>
+</div>`
   },
   {
     title: "Маркетинг",
     target: "svc-2",
-    content: `
+    content: `<div class="accordion-panel-inner">
 <h4 class="font-semibold">О проекте</h4>
-<p>Мы создаём креативные рекламные ролики с использованием ИИ, автоматизируем процессы и разрабатываем уникальный контент для брендов. Также продвижение в соцсетях для максимального охвата.</p>
+<p>Создаём креативные рекламные ролики с использованием ИИ и продвижением в соцсетях.</p>
 <h4 class="font-semibold mt-2">Форматы интеграции</h4>
-<ul class="list-disc pl-5"><li>Креативные рекламные ролики</li><li>Автоматизация маркетинга</li><li>Создание контента под бренд</li><li>Продвижение в соцсетях</li><li>Внедрение AR/VR и др.</li></ul>
+<ul class="list-disc pl-5">
+<li>Креативные рекламные ролики</li>
+<li>Автоматизация маркетинга</li>
+<li>Создание контента под задачи бренда</li>
+<li>Продвижение в соцсетях</li>
+<li>Внедрение инновационных решений (AR/VR)</li>
+</ul>
 <h4 class="font-semibold mt-2">Прайс-лист</h4>
-<ul class="list-disc pl-5 price-list"><li>$7 000 — полный пакет</li><li>$5 000 — один ролик + соцсети</li><li>$3 500 — один ролик + базовая автоматизация</li><li>$2 000 — короткий ролик до 30 секунд</li></ul>
-<div class="mt-4"><label class="block font-semibold mb-1">Загрузить видео-пример (до 100 МБ)</label><input type="file" accept="video/*" class="upload-video" data-target="video-svc-2"><video id="video-svc-2" controls class="w-full mt-2 max-h-64"></video></div>
-`
+<ul class="list-disc pl-5 price-list">
+<li>$7 000 — полный пакет</li>
+<li>$5 000 — один ролик + адаптация</li>
+<li>$3 500 — один ролик + базовая автоматизация</li>
+<li>$2 000 — короткий ролик до 30 сек</li>
+</ul>
+<div class="mt-4">
+<label class="block font-semibold mb-1">Загрузить видео (до 100 МБ)</label>
+<input type="file" accept="video/*" class="upload-video" data-target="video-svc-2">
+<video id="video-svc-2" controls class="w-full mt-2 max-h-64"></video>
+</div>
+</div>`
   },
   {
     title: "Обучение ИИ",
     target: "svc-3",
-    content: `
+    content: `<div class="accordion-panel-inner">
 <h4 class="font-semibold">О проекте</h4>
-<p>Мы обучаем сотрудников компаний и всех желающих правильно использовать ИИ. Курсы и тренинги помогают освоить инструменты для автоматизации задач.</p>
+<p>Мы обучаем сотрудников и всех желающих использовать ИИ для повышения продуктивности.</p>
 <h4 class="font-semibold mt-2">Уникальность</h4>
-<ul class="list-disc pl-5"><li>Практические знания, применимые сразу</li><li>Индивидуальный подход под сферу клиента</li><li>Рост эффективности без доп. расходов на персонал</li></ul>
+<ul class="list-disc pl-5">
+<li>Практические знания</li>
+<li>Индивидуальный подход</li>
+<li>Рост эффективности без дополнительных расходов</li>
+</ul>
 <h4 class="font-semibold mt-2">Форматы</h4>
-<ul class="list-disc pl-5"><li>Онлайн-курсы</li><li>Оффлайн мастер-классы</li><li>Корпоративное обучение «под ключ»</li></ul>
+<ul class="list-disc pl-5">
+<li>Онлайн-курсы</li>
+<li>Оффлайн мастер-классы</li>
+<li>Корпоративное обучение «под ключ»</li>
+</ul>
 <h4 class="font-semibold mt-2">Прайс-лист</h4>
-<ul class="list-disc pl-5 price-list"><li>$2 000 — корпоративное обучение (до 20 сотрудников)</li><li>$700 — индивидуальный интенсив (5 занятий)</li><li>$300 — базовый онлайн-курс</li></ul>
-<div class="mt-4"><label class="block font-semibold mb-1">Загрузить видео-пример (до 100 МБ)</label><input type="file" accept="video/*" class="upload-video" data-target="video-svc-3"><video id="video-svc-3" controls class="w-full mt-2 max-h-64"></video></div>
-`
+<ul class="list-disc pl-5 price-list">
+<li>$2 000 — корпоративное обучение (до 20 сотрудников)</li>
+<li>$700 — индивидуальный интенсив (5 занятий)</li>
+<li>$300 — базовый онлайн-курс</li>
+</ul>
+<div class="mt-4">
+<label class="block font-semibold mb-1">Загрузить видео (до 100 МБ)</label>
+<input type="file" accept="video/*" class="upload-video" data-target="video-svc-3">
+<video id="video-svc-3" controls class="w-full mt-2 max-h-64"></video>
+</div>
+</div>`
   },
   {
     title: "Блоггинг",
     target: "svc-4",
-    content: `
+    content: `<div class="accordion-panel-inner">
 <h4 class="font-semibold">О проекте</h4>
-<p>Мы создаём виртуального блогера на базе ИИ для влогов, юмористических роликов и клипов. Привлекает внимание аудитории.</p>
+<p>Виртуальный блогер на базе ИИ: влоги, скетчи, клипы.</p>
 <h4 class="font-semibold mt-2">Уникальность</h4>
-<ul class="list-disc pl-5"><li>Виртуальный блогер доступен 24/7</li><li>Бесконечный контент</li><li>Экономия на производстве</li></ul>
+<ul class="list-disc pl-5">
+<li>Виртуальный блогер доступен 24/7</li>
+<li>Бесконечный контент</li>
+<li>Экономия на производстве</li>
+</ul>
 <h4 class="font-semibold mt-2">Форматы</h4>
-<ul class="list-disc pl-5"><li>Юмористические скетчи</li><li>Влоги и обзоры</li><li>Вирусные клипы</li></ul>
+<ul class="list-disc pl-5">
+<li>Юмористические скетчи</li>
+<li>Влоги и обзоры</li>
+<li>Вирусные клипы для соцсетей</li>
+</ul>
 <h4 class="font-semibold mt-2">Прайс-лист</h4>
-<ul class="list-disc pl-5 price-list"><li>$8 000 — Интеграция логотипа в видео на месяц</li><li>$1 000 — Разовая реклама на пост</li><li>$500 — Разовая реклама для сторис</li></ul>
-<div class="mt-4"><label class="block font-semibold mb-1">Загрузить видео-пример (до 100 МБ)</label><input type="file" accept="video/*" class="upload-video" data-target="video-svc-4"><video id="video-svc-4" controls class="w-full mt-2 max-h-64"></video></div>
-`
+<ul class="list-disc pl-5 price-list">
+<li>$8 000 — интеграция логотипа на месяц</li>
+<li>$1 000 — разовая реклама на пост</li>
+<li>$500 — сторис/мини-клип</li>
+</ul>
+<div class="mt-4">
+<label class="block font-semibold mb-1">Загрузить видео (до 100 МБ)</label>
+<input type="file" accept="video/*" class="upload-video" data-target="video-svc-4">
+<video id="video-svc-4" controls class="w-full mt-2 max-h-64"></video>
+</div>
+</div>`
   },
   {
     title: "Ведущий новостей",
     target: "svc-5",
-    content: `
+    content: `<div class="accordion-panel-inner">
 <h4 class="font-semibold">О проекте</h4>
-<p>Мы запускаем новостной канал с ИИ-ведущим. Современная подача и оперативные выпуски.</p>
+<p>Уникальный новостной канал с ИИ-виртуальным ведущим.</p>
 <h4 class="font-semibold mt-2">Уникальность</h4>
-<ul class="list-disc pl-5"><li>Первый в Узбекистане виртуальный ведущий</li><li>Современная подача</li><li>Быстрое создание контента</li></ul>
+<ul class="list-disc pl-5">
+<li>Первый виртуальный ведущий новостей в Узбекистане</li>
+<li>Современная подача</li>
+<li>Быстрое создание контента</li>
+</ul>
 <h4 class="font-semibold mt-2">Аудитория</h4>
-<ul class="list-disc pl-5"><li>Жители Узбекистана, молодежь 18–35 лет, бизнес</li></ul>
+<ul class="list-disc pl-5">
+<li>Жители Узбекистана, молодёжь 18–35 лет</li>
+<li>Бизнес, ищущий новые форматы продвижения</li>
+</ul>
 <h4 class="font-semibold mt-2">Возможности интеграции рекламы</h4>
-<ul class="list-disc pl-5"><li>Рекламные вставки в стиле новостей</li><li>У
-```
-
-
-поминание бренда</li><li>Логотип/баннер</li><li>Продвижение соцсетей бренда</li></ul>
-
+<ul class="list-disc pl-5">
+<li>Рекламные вставки в стиле новостей</li>
+<li>Упоминание бренда в сюжете выпуска</li>
+<li>Логотип и баннер на экране</li>
+<li>Продвижение соцсетей бренда</li>
+</ul>
 <h4 class="font-semibold mt-2">Прайс-лист</h4>
-<ul class="list-disc pl-5 price-list"><li>$8 000 — интеграция логотипа на месяц</li><li>$1 000 — разовая реклама на пост</li><li>$500 — сторис</li></ul>
-<div class="mt-4"><label class="block font-semibold mb-1">Загрузить видео-пример (до 100 МБ)</label><input type="file" accept="video/*" class="upload-video" data-target="video-svc-5"><video id="video-svc-5" controls class="w-full mt-2 max-h-64"></video></div>
-`
+<ul class="list-disc pl-5 price-list">
+<li>$8 000 — интеграция логотипа на месяц</li>
+<li>$1 000 — разовая реклама на пост</li>
+<li>$500 — сторис/мини-клип</li>
+</ul>
+<div class="mt-4">
+<label class="block font-semibold mb-1">Загрузить видео (до 100 МБ)</label>
+<input type="file" accept="video/*" class="upload-video" data-target="video-svc-5">
+<video id="video-svc-5" controls class="w-full mt-2 max-h-64"></video>
+</div>
+</div>`
   },
   {
-    title: "Love Story (Анимированное видео)",
+    title: "Love Story",
     target: "svc-6",
-    content: `
+    content: `<div class="accordion-panel-inner">
 <h4 class="font-semibold">О проекте</h4>
-<p>Персонализированные анимационные истории любви для подарка, свадьбы или события.</p>
+<p>Персонализированные анимационные истории любви для подарка или события.</p>
 <h4 class="font-semibold mt-2">Уникальность</h4>
-<ul class="list-disc pl-5"><li>Полностью индивидуальный сценарий</li><li>«Оживление» фото и истории</li><li>Эмоциональный и памятный подарок</li></ul>
+<ul class="list-disc pl-5">
+<li>Полностью индивидуальный сценарий</li>
+<li>«Оживление» фото и истории</li>
+<li>Эмоциональный и памятный подарок</li>
+</ul>
 <h4 class="font-semibold mt-2">Форматы</h4>
-<ul class="list-disc pl-5"><li>Свадебный фильм</li><li>История знакомства для показа гостям</li><li>Индивидуальные романтические сюжеты</li></ul>
+<ul class="list-disc pl-5">
+<li>Свадебный фильм</li>
+<li>История знакомства для гостей</li>
+<li>Индивидуальные романтические сюжеты</li>
+</ul>
 <h4 class="font-semibold mt-2">Прайс-лист</h4>
-<ul class="list-disc pl-5 price-list"><li>$1 000 — полный 10-минутный фильм</li><li>$600 — Love Story ролик (3–5 мин)</li><li>$100 — мини-клип (до 1 мин)</li></ul>
-<div class="mt-4"><label class="block font-semibold mb-1">Загрузить видео-пример (до 100 МБ)</label><input type="file" accept="video/*" class="upload-video" data-target="video-svc-6"><video id="video-svc-6" controls class="w-full mt-2 max-h-64"></video></div>
-`
+<ul class="list-disc pl-5 price-list">
+<li>$1 000 — полный 10-минутный фильм</li>
+<li>$600 — Love Story ролик 3–5 мин</li>
+<li>$100 — мини-клип до 1 мин</li>
+</ul>
+<div class="mt-4">
+<label class="block font-semibold mb-1">Загрузить видео (до 100 МБ)</label>
+<input type="file" accept="video/*" class="upload-video" data-target="video-svc-6">
+<video id="video-svc-6" controls class="w-full mt-2 max-h-64"></video>
+</div>
+</div>`
   }
 ];
 
-services.forEach(svc=>{
-document.write(\`
-
-  <div class="bg-white rounded-2xl p-6 shadow mb-4">
+const container = document.getElementById('services-container');
+services.forEach(svc => {
+  const div = document.createElement('div');
+  div.className = "bg-white rounded-2xl p-6 shadow mb-4";
+  div.innerHTML = `
     <div class="flex justify-between items-start">
       <h3 class="text-xl font-semibold">${svc.title}</h3>
       <button class="toggle-btn px-4 py-2 border rounded" data-target="${svc.target}">Подробнее</button>
     </div>
     <div id="${svc.target}" class="accordion-panel mt-4">${svc.content}</div>
-  </div>
-  `);
+  `;
+  container.appendChild(div);
 });
-</script>
-</div>
-</section>
 
-<script>
-  // Аккордеон
-  document.querySelectorAll('.toggle-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      const panel = document.getElementById(btn.dataset.target);
-      panel.classList.toggle('open');
-      panel.style.maxHeight = panel.classList.contains('open') ? panel.scrollHeight + "px" : null;
-    });
+// Аккордеон
+document.querySelectorAll('.toggle-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const panel = document.getElementById(btn.dataset.target);
+    const isOpen = panel.classList.contains('open');
+    panel.classList.toggle('open');
+    btn.classList.toggle('open', !isOpen);
+    panel.style.maxHeight = !isOpen ? panel.scrollHeight + "px" : null;
   });
+});
 
-  // Мобильное меню
-  document.getElementById('menuBtn').addEventListener('click',()=>{
-    const nav = document.getElementById('navMenu');
-    nav.classList.toggle('hidden');
+// Видео загрузка
+document.querySelectorAll('.upload-video').forEach(input=>{
+  input.addEventListener('change',e=>{
+    const file = e.target.files[0];
+    if(file && file.size <= 100*1024*1024){
+      const video = document.getElementById(input.dataset.target);
+      video.src = URL.createObjectURL(file);
+    } else if(file){
+      alert("Файл слишком большой! Максимум 100 МБ.");
+      e.target.value = "";
+    }
   });
-
-  // Видео-превью
-  document.querySelectorAll('.upload-video').forEach(input=>{
-    input.addEventListener('change',e=>{
-      const file = e.target.files[0];
-      if(file && file.size <= 100*1024*1024){
-        const video = document.getElementById(input.dataset.target);
-        video.src = URL.createObjectURL(file);
-      } else if(file){
-        alert("Файл слишком большой! Максимум 100 МБ.");
-        e.target.value = "";
-      }
-    });
-  });
+});
 </script>
 
 </body>
 </html>
-```  
